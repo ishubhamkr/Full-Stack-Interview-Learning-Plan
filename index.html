@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>30‑Day Full‑Stack Interview Plan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+header{background:linear-gradient(135deg,#4338ca,#7c3aed);padding:28px 20px;text-align:center}
+header h1{font-size:clamp(1.2rem,3vw,1.9rem);font-weight:700;margin-bottom:6px}
+header p{font-size:.9rem;opacity:.85}
+.legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px}
+.legend span{background:rgba(255,255,255,.15);border-radius:20px;padding:4px 12px;font-size:.78rem}
+.main{max-width:1100px;margin:0 auto;padding:20px}
+.day-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.day-btn{background:#1e293b;border:2px solid #334155;color:#94a3b8;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.82rem;transition:.15s}
+.day-btn:hover{border-color:#6366f1;color:#e2e8f0}
+.day-btn.active{background:#4338ca;border-color:#6366f1;color:#fff;font-weight:700}
+.day-btn.done{border-color:#16a34a;color:#4ade80}
+.day-card{background:#1e293b;border-radius:14px;padding:24px;border:1px solid #334155}
+.day-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.day-number{background:linear-gradient(135deg,#4338ca,#7c3aed);border-radius:10px;padding:10px 18px;font-size:1.4rem;font-weight:800}
+.day-meta{flex:1}
+.day-meta h2{font-size:1.2rem;color:#a5b4fc}
+.day-meta p{font-size:.82rem;color:#64748b;margin-top:3px}
+.time-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{border-radius:20px;padding:3px 10px;font-size:.74rem;font-weight:600}
+.chip-dsa{background:#1e3a5f;color:#60a5fa}
+.chip-learn{background:#1e3b2e;color:#4ade80}
+.chip-proj{background:#3b1e3b;color:#e879f9}
+.chip-mock{background:#3b2e1e;color:#fb923c}
+.section{margin-bottom:20px}
+.section-title{display:flex;align-items:center;gap:8px;font-size:1rem;font-weight:700;padding:8px 12px;border-radius:8px;margin-bottom:10px}
+.sec-dsa .section-title{background:#1e3a5f;color:#60a5fa}
+.sec-learn .section-title{background:#1e3b2e;color:#4ade80}
+.sec-proj .section-title{background:#3b1e3b;color:#e879f9}
+.sec-mock .section-title{background:#3b2e1e;color:#fb923c}
+.task{display:flex;align-items:flex-start;gap:10px;background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:10px 12px;margin-bottom:6px;transition:.15s}
+.task:hover{border-color:#334155}
+.task.completed{opacity:.5}
+.task input[type=checkbox]{width:17px;height:17px;margin-top:2px;flex-shrink:0;accent-color:#6366f1;cursor:pointer}
+.task-body{flex:1}
+.task-title{font-size:.9rem;color:#e2e8f0;font-weight:500}
+.task-sub{font-size:.78rem;color:#64748b;margin-top:2px}
+.task-links{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap}
+.link-btn{display:inline-flex;align-items:center;gap:4px;text-decoration:none;border-radius:6px;padding:3px 9px;font-size:.75rem;font-weight:600;transition:.15s}
+.link-btn:hover{opacity:.8;transform:scale(1.04)}
+.lc-btn{background:#f89f1b22;color:#f89f1b;border:1px solid #f89f1b44}
+.yt-btn{background:#ff000022;color:#ff4444;border:1px solid #ff000044}
+.doc-btn{background:#3b82f622;color:#60a5fa;border:1px solid #3b82f644}
+.progress-bar{background:#0f172a;border-radius:99px;height:8px;margin-bottom:20px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#4338ca,#7c3aed);border-radius:99px;transition:.4s}
+.roadmap-toggle{background:#4338ca;border:none;color:white;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:.9rem;margin-bottom:16px;transition:.15s}
+.roadmap-toggle:hover{background:#5b50f0}
+.roadmap{display:none;background:#1e293b;border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid #334155}
+.roadmap.open{display:block}
+.roadmap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.roadmap-card{background:#0f172a;border-radius:8px;padding:14px;border-left:3px solid #6366f1}
+.roadmap-card h4{color:#a5b4fc;font-size:.85rem;margin-bottom:6px}
+.roadmap-card li{font-size:.78rem;color:#94a3b8;margin-left:14px;margin-top:3px}
+footer{text-align:center;color:#475569;padding:20px;font-size:.82rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>🚀 Shubham's 30‑Day Full‑Stack Interview Learning Plan</h1>
+  <p>Java · Spring Boot · React · Node.js · PostgreSQL · Redis · Kafka · Docker · AWS · System Design · AI</p>
+  <div class="legend">
+    <span>🧠 DSA 2h</span>
+    <span>📘 Learning 2h</span>
+    <span>💻 Project 1.5h</span>
+    <span>🎤 Mock 30m (alt days)</span>
+    <span>⏱ 6h/day total</span>
+  </div>
+</header>
+<div class="main">
+  <button class="roadmap-toggle" onclick="toggleRoadmap()">📊 View Full Stack Roadmap</button>
+  <div class="roadmap" id="roadmap">
+    <h3 style="color:#a5b4fc;margin-bottom:14px">Full Stack Learning Pipeline → Spency Project</h3>
+    <div style="background:#0f172a;border-radius:8px;padding:16px;margin-bottom:14px;font-family:monospace;font-size:.78rem;color:#94a3b8;line-height:1.8;border:1px solid #334155">
+      <span style="color:#a5b4fc;font-weight:700">Spency Target Architecture</span><br>
+      <span style="color:#e879f9">React (Vite+Tailwind) — 6 modules: auth/user/ca/admin/shopkeeper/account</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;│<br>
+      <span style="color:#fb923c">spency-gateway (Express Proxy)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;│<br>
+      ┌──────────────────────────────┐<br>
+      │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+      <span style="color:#60a5fa">Spring Boot</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ade80">Node.js</span><br>
+      User/Auth/CA/Shopkeeper&nbsp;&nbsp;Order Service<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+      <span style="color:#60a5fa">PostgreSQL</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ade80">MongoDB Atlas</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;│<br>
+      <span style="color:#f89f1b">Redis Cache</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;│<br>
+      <span style="color:#f89f1b">Kafka Event Bus</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;│<br>
+      <span style="color:#a5b4fc">AWS Cloud — EC2 + S3 + CloudFront + ALB</span><br>
+      <span style="color:#64748b;font-size:.72rem">infra/s3/ + infra/iam/ already configured ✅</span>
+    </div>
+    <div class="roadmap-grid">
+      <div class="roadmap-card"><h4>Foundations</h4><ul><li>Java Core</li><li>OOP</li><li>Data Structures</li></ul></div>
+      <div class="roadmap-card"><h4>Backend</h4><ul><li>Spring Boot</li><li>REST APIs</li><li>Security (JWT)</li><li>Microservices</li></ul></div>
+      <div class="roadmap-card"><h4>Frontend</h4><ul><li>React</li><li>Hooks</li><li>API Integration</li></ul></div>
+      <div class="roadmap-card"><h4>Secondary Backend</h4><ul><li>Node.js</li><li>Express</li></ul></div>
+      <div class="roadmap-card"><h4>Data Layer</h4><ul><li>PostgreSQL</li><li>Redis</li><li>MongoDB basics</li></ul></div>
+      <div class="roadmap-card"><h4>Distributed Systems</h4><ul><li>Kafka</li><li>Event Driven Arch</li></ul></div>
+      <div class="roadmap-card"><h4>Cloud &amp; DevOps</h4><ul><li>Docker</li><li>AWS EC2 + S3</li><li>Load Balancer</li></ul></div>
+      <div class="roadmap-card"><h4>Architecture</h4><ul><li>System Design</li><li>Caching</li><li>Rate Limiting</li></ul></div>
+      <div class="roadmap-card"><h4>AI Integration</h4><ul><li>OpenAI API</li><li>Prompt Engineering</li><li>RAG basics</li></ul></div>
+    </div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="totalProgress" style="width:0%"></div></div>
+  <p id="progressText" style="font-size:.8rem;color:#64748b;margin-bottom:14px;text-align:right"></p>
+  <div class="day-nav" id="dayNav"></div>
+  <div class="day-card" id="dayCard"></div>
+</div>
+<footer>✅ Auto‑saves to localStorage · Build one production project touching every layer</footer>
+<script>
+const LC="https://leetcode.com/problems/";
+const plan={
+1:{title:"Java Basics – Variables, Loops, Classes",week:"Week 1 — Java & Spring Foundations",mock:false,
+dsa:[
+{name:"Two Sum",time:"15m",url:LC+"two-sum/"},
+{name:"Contains Duplicate",time:"15m",url:LC+"contains-duplicate/"},
+{name:"Valid Anagram",time:"15m",url:LC+"valid-anagram/"},
+{name:"Best Time to Buy and Sell Stock",time:"20m",url:LC+"best-time-to-buy-and-sell-stock/"},
+{name:"Maximum Subarray",time:"20m",url:LC+"maximum-subarray/"},
+{name:"Product of Array Except Self",time:"35m",url:LC+"product-of-array-except-self/"}
+],
+learning:[{name:"Java Full Course – syntax, loops, methods, classes (watch first 2h, take notes)",resource:"Programming with Mosh",url:"https://www.youtube.com/watch?v=eIrMbAQSU34",type:"yt"}],
+project:[
+{name:"Go to start.spring.io: Maven, Java 21, Spring Web, DevTools, Lombok — download + open in IntelliJ",detail:"Run ./mvnw spring-boot:run and confirm port 8080 starts with 'Started SpencyApplication'",url:"https://start.spring.io",type:"doc"},
+{name:"Create package layout: com.spency.auth, com.spency.user, com.spency.shopkeeper, com.spency.ca, com.spency.account, com.spency.order",detail:"Each package will later have controller/, service/, repository/, model/ sub-packages. Create empty placeholder class in each.",url:"https://spring.io/guides/gs/spring-boot/",type:"doc"},
+{name:"Write HealthController.java → GET /health returns {status:'UP', service:'spency-backend'}",detail:"@RestController + @GetMapping. Add @CrossOrigin(origins='http://localhost:5173') for spency Vite dev server on port 5173",url:"https://spring.io/guides/gs/spring-boot/",type:"doc"},
+{name:"Write VersionController.java → GET /api/version returns {version:'1.0.0', env:'dev'}",detail:"Will be called by spency React header to show app version. Test in browser: http://localhost:8080/api/version",url:"https://spring.io/guides/gs/spring-boot/",type:"doc"},
+{name:"Configure application.properties: server.port=8080, spring.application.name=spency-backend, logging.level.com.spency=DEBUG",detail:"Also add: spring.jackson.serialization.write-dates-as-timestamps=false (ISO dates in all JSON responses)",url:"https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html",type:"doc"}
+]
+},
+2:{title:"OOP – Inheritance, Polymorphism, Encapsulation",week:"Week 1 — Java & Spring Foundations",mock:true,
+dsa:[
+{name:"Climbing Stairs",time:"15m",url:LC+"climbing-stairs/"},
+{name:"Merge Intervals",time:"20m",url:LC+"merge-intervals/"},
+{name:"Insert Interval",time:"20m",url:LC+"insert-interval/"},
+{name:"Meeting Rooms II",time:"20m",url:LC+"meeting-rooms-ii/"},
+{name:"Subarray Sum Equals K",time:"25m",url:LC+"subarray-sum-equals-k/"},
+{name:"First Missing Positive",time:"20m",url:LC+"first-missing-positive/"}
+],
+learning:[{name:"OOP in Java – inheritance, polymorphism, abstraction, encapsulation, interfaces",resource:"Telusko OOP Playlist",url:"https://www.youtube.com/watch?v=pTB0EiLXUC8",type:"yt"}],
+project:[
+{name:"Create UserRole.java enum: USER, SHOPKEEPER, CA, ADMIN",detail:"Will be used as DB column and as JWT claim — maps directly to spency frontend role-based guard checks",url:"https://www.youtube.com/watch?v=pTB0EiLXUC8",type:"yt"},
+{name:"Create abstract BaseUser.java: id(UUID), email, passwordHash, role(UserRole), createdAt, updatedAt",detail:"Add abstract getDisplayName(). Annotate @MappedSuperclass for JPA inheritance on Day 9",url:"https://www.youtube.com/watch?v=pTB0EiLXUC8",type:"yt"},
+{name:"Create User.java extends BaseUser: firstName, lastName, phone, avatarUrl",detail:"Override getDisplayName() = firstName + ' ' + lastName. Mirrors spency modules/user/ data shape",url:"https://www.youtube.com/watch?v=pTB0EiLXUC8",type:"yt"},
+{name:"Create Shopkeeper.java extends BaseUser: businessName, category, location, isVerified",detail:"Override getDisplayName() = businessName. Mirrors spency ShopkeeperContext data fields exactly",url:"https://www.youtube.com/watch?v=pTB0EiLXUC8",type:"yt"},
+{name:"Create CA.java extends BaseUser: licenseNumber, specialization, experienceYears, isVerified",detail:"Override getDisplayName() = licenseNumber + ' - ' + specialization. Mirrors spency CAContext data shape",url:"https://www.youtube.com/watch?v=pTB0EiLXUC8",type:"yt"}
+]
+},
+3:{title:"Java Collections – List, Set, Map + Streams",week:"Week 1 — Java & Spring Foundations",mock:false,
+dsa:[
+{name:"Group Anagrams",time:"20m",url:LC+"group-anagrams/"},
+{name:"Top K Frequent Elements",time:"20m",url:LC+"top-k-frequent-elements/"},
+{name:"Encode and Decode Strings",time:"20m",url:LC+"encode-and-decode-strings/"},
+{name:"Longest Consecutive Sequence",time:"20m",url:LC+"longest-consecutive-sequence/"},
+{name:"Find Minimum in Rotated Sorted Array",time:"20m",url:LC+"find-minimum-in-rotated-sorted-array/"},
+{name:"Search in Rotated Sorted Array",time:"20m",url:LC+"search-in-rotated-sorted-array/"}
+],
+learning:[{name:"Java Collections Framework – ArrayList, HashMap, LinkedHashMap, TreeMap, Stream API",resource:"Coding with John – Collections",url:"https://www.youtube.com/watch?v=viTHc59-KWY",type:"yt"}],
+project:[
+{name:"Create InMemoryUserRegistry.java backed by HashMap<UUID, User>: addUser(), findById(), findAll(), deleteById()",detail:"Will be swapped for JpaRepository on Day 9 — identical interface keeps rest of code unchanged",url:"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html",type:"doc"},
+{name:"Create InMemoryShopkeeperRegistry.java: findByCategory(String) using stream().filter(s -> s.getCategory().equals(cat))",detail:"Returns List<Shopkeeper>. Mirrors spency ShopkeeperContext category filter (client-side today, DB query on Day 9)",url:"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html",type:"doc"},
+{name:"Add groupByRole() to UserRegistry: stream().collect(Collectors.groupingBy(BaseUser::getRole))",detail:"Returns Map<UserRole, List<BaseUser>>. Used by admin dashboard reporting endpoint for user counts per role",url:"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html",type:"doc"},
+{name:"Add getEmailList(): stream().map(User::getEmail).collect(Collectors.toList())",detail:"Practice method references. Will be used by notification service when sending bulk emails",url:"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html",type:"doc"},
+{name:"Write RegistryDemo.java main(): add 5 users + 3 shopkeepers + 2 CAs, print groupBy results and filtered lists",detail:"Run it. Confirm groupByRole returns {USER:[...], SHOPKEEPER:[...], CA:[...]} and category filter works",url:"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collections.html",type:"doc"}
+]
+},
+4:{title:"Spring Boot Intro – Project Setup & Controllers",week:"Week 1 — Java & Spring Foundations",mock:true,
+dsa:[
+{name:"Valid Parentheses",time:"15m",url:LC+"valid-parentheses/"},
+{name:"Min Stack",time:"15m",url:LC+"min-stack/"},
+{name:"Evaluate Reverse Polish Notation",time:"20m",url:LC+"evaluate-reverse-polish-notation/"},
+{name:"Generate Parentheses",time:"20m",url:LC+"generate-parentheses/"},
+{name:"Daily Temperatures",time:"20m",url:LC+"daily-temperatures/"},
+{name:"Largest Rectangle in Histogram",time:"30m",url:LC+"largest-rectangle-in-histogram/"}
+],
+learning:[
+{name:"Spring Boot Crash Course – auto-config, starters, @SpringBootApplication, @RestController",resource:"Amigoscode Spring Boot",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Spring Boot Quickstart Official Guide",resource:"spring.io",url:"https://spring.io/guides/gs/spring-boot/",type:"doc"}
+],
+project:[
+{name:"Create UserController.java: GET /api/users, POST /api/users, GET /api/users/{id} — returns 200/201/404",detail:"@RestController @RequestMapping('/api/users'). Wire to InMemoryUserRegistry for now",url:"https://spring.io/guides/gs/spring-boot/",type:"doc"},
+{name:"Create ShopkeeperController.java: GET /api/shopkeepers, POST, GET /api/shopkeepers/{id}, GET /api/shopkeepers?category={cat}",detail:"@RequestParam(required=false) String category — returns all if null. Mirrors spency ShopkeeperContext.findByCategory()",url:"https://spring.io/guides/gs/spring-boot/",type:"doc"},
+{name:"Create CAController.java: GET /api/cas, POST, GET /api/cas/{id}, GET /api/cas?specialization={spec}",detail:"Same pattern as ShopkeeperController. Maps to spency CAContext search page",url:"https://spring.io/guides/gs/spring-boot/",type:"doc"},
+{name:"Create GlobalExceptionHandler.java @ControllerAdvice: ResourceNotFoundException → 404, MethodArgumentNotValidException → 400",detail:"Return ErrorResponse{status, message, timestamp, errors:[{field, message}]}. Used by spency Axios error interceptor",url:"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html",type:"doc"},
+{name:"Configure global CORS: allow http://localhost:5173 for all /api/** routes in WebMvcConfigurer",detail:"addCorsMappings: allowedOrigins 'http://localhost:5173', allowedMethods GET/POST/PUT/DELETE, allowedHeaders *, allowCredentials true",url:"https://docs.spring.io/spring-framework/reference/web/webmvc-cors.html",type:"doc"}
+]
+},
+5:{title:"Service Layer, Dependency Injection & Layered Architecture",week:"Week 1 — Java & Spring Foundations",mock:false,
+dsa:[
+{name:"Binary Search",time:"15m",url:LC+"binary-search/"},
+{name:"Koko Eating Bananas",time:"20m",url:LC+"koko-eating-bananas/"},
+{name:"Find First and Last Position",time:"20m",url:LC+"find-first-and-last-position-of-element-in-sorted-array/"},
+{name:"Median of Two Sorted Arrays",time:"30m",url:LC+"median-of-two-sorted-arrays/"},
+{name:"Time Based Key-Value Store",time:"20m",url:LC+"time-based-key-value-store/"},
+{name:"Search a 2D Matrix",time:"15m",url:LC+"search-a-2d-matrix/"}
+],
+learning:[{name:"Spring @Service, @Repository, @Autowired, Bean lifecycle, constructor injection",resource:"Java Brains – Spring Core",url:"https://www.youtube.com/watch?v=GB8k2-Egfv0",type:"yt"}],
+project:[
+{name:"Create IUserRepository interface: findById(UUID), findAll(), save(User), deleteById(UUID), findByEmail(String)",detail:"Pure Java interface — InMemoryUserRepository implements it today; JpaUserRepository will implement same interface on Day 9",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Create UserService.java with final IUserRepository repo; in constructor (no @Autowired field injection)",detail:"Methods: createUser(UserCreateRequest), getUserById(UUID), listUsers(), updateUser(UUID, data), deleteUser(UUID)",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Create IShopkeeperRepository + ShopkeeperService.java: findByCategory() delegates to repo stream filter",detail:"ShopkeeperService.findByCategory(String category) for spency category search feature",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Create ICARepository + CAService.java: findBySpecialization() for spency CA search page",detail:"Same constructor-injection pattern as UserService. @Service annotation on all three",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Wire all 3 services into their controllers via constructor; confirm Spring context loads with zero circular dependency errors",detail:"Run ./mvnw spring-boot:run. Call GET /api/users in browser — returns empty array []. No errors in logs",url:"https://www.youtube.com/watch?v=GB8k2-Egfv0",type:"yt"}
+]
+},
+6:{title:"REST API Design – CRUD + Error Handling + Validation",week:"Week 1 — Java & Spring Foundations",mock:true,
+dsa:[
+{name:"Reverse Linked List",time:"15m",url:LC+"reverse-linked-list/"},
+{name:"Merge Two Sorted Lists",time:"15m",url:LC+"merge-two-sorted-lists/"},
+{name:"Reorder List",time:"20m",url:LC+"reorder-list/"},
+{name:"Remove Nth Node From End",time:"20m",url:LC+"remove-nth-node-from-end-of-list/"},
+{name:"Linked List Cycle",time:"15m",url:LC+"linked-list-cycle/"},
+{name:"LRU Cache",time:"35m",url:LC+"lru-cache/"}
+],
+learning:[
+{name:"REST best practices – HTTP verbs, status codes, pagination, versioning",resource:"REST API Tutorial",url:"https://restfulapi.net/",type:"doc"},
+{name:"Spring Boot REST – @PostMapping, @PutMapping, @DeleteMapping, @RequestBody",resource:"Amigoscode REST API",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"}
+],
+project:[
+{name:"Add to UserController: PUT /api/users/{id} (update fields), DELETE /api/users/{id} (soft-delete, sets deletedAt)",detail:"DELETE returns 204 No Content. Soft delete preserves record in DB with deletedAt timestamp set",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Add to ShopkeeperController: PUT /api/shopkeepers/{id}, DELETE /api/shopkeepers/{id}, verify GET ?category= filter works",detail:"category query param: /api/shopkeepers?category=FOOD returns only FOOD category shopkeepers",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Add to CAController: PUT /api/cas/{id}, DELETE /api/cas/{id}, verify GET ?specialization= filter works",detail:"/api/cas?specialization=TAX returns only TAX specialists. Used by spency CA search page",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"},
+{name:"Create UserCreateRequest.java DTO: @NotBlank firstName, @NotBlank lastName, @Email email, @Size(min=8) password",detail:"Also ShopkeeperCreateRequest with @NotBlank businessName, @NotBlank category. Add @Valid in controller @RequestBody",url:"https://jakarta.ee/specifications/bean-validation/",type:"doc"},
+{name:"Create ErrorResponse.java DTO: {status, message, timestamp, errors:[{field, message}]}",detail:"GlobalExceptionHandler builds this for all errors. Shape matches what spency Axios interceptor expects for showing toast messages",url:"https://www.baeldung.com/exception-handling-for-rest-with-spring",type:"doc"},
+{name:"Test all 15 endpoints in Postman (5 per controller). Also test validation: POST /api/users with blank email → 400 {errors:[{field:'email'}]}",detail:"Verify DELETE returns 204, invalid ID returns 404 with ErrorResponse body, valid POST returns 201 with created object",url:"https://www.youtube.com/watch?v=9SGDpanrc8U",type:"yt"}
+]
+},
+7:{title:"Build Day – Unit Tests + Integration Tests",week:"Week 1 — Java & Spring Foundations",mock:false,
+dsa:[
+{name:"Invert Binary Tree",time:"15m",url:LC+"invert-binary-tree/"},
+{name:"Maximum Depth of Binary Tree",time:"15m",url:LC+"maximum-depth-of-binary-tree/"},
+{name:"Diameter of Binary Tree",time:"20m",url:LC+"diameter-of-binary-tree/"},
+{name:"Balanced Binary Tree",time:"20m",url:LC+"balanced-binary-tree/"},
+{name:"Same Tree",time:"15m",url:LC+"same-tree/"},
+{name:"Binary Tree Level Order Traversal",time:"35m",url:LC+"binary-tree-level-order-traversal/"}
+],
+learning:[{name:"Spring Boot Testing – JUnit 5, Mockito, MockMvc, @WebMvcTest",resource:"Testing Spring Boot – Amigoscode",url:"https://www.youtube.com/watch?v=Geq60OVyBPg",type:"yt"}],
+project:[
+{name:"Write UserServiceTest.java: @ExtendWith(MockitoExtension), mock IUserRepository, test createUser() + getUserById() + deleteUser()",detail:"Verify mock.save() called with correct User object. Verify mock.deleteById() called on deleteUser(). Assert exception thrown for missing ID",url:"https://www.youtube.com/watch?v=Geq60OVyBPg",type:"yt"},
+{name:"Write ShopkeeperServiceTest.java: test findByCategory() returns only matching items from mocked repo",detail:"Mock returns mixed list of FOOD + TECH shopkeepers. Assert only FOOD returned when filter is 'FOOD'",url:"https://www.youtube.com/watch?v=Geq60OVyBPg",type:"yt"},
+{name:"Write UserControllerTest.java: @WebMvcTest(UserController), MockMvc — test GET /api/users returns 200, POST returns 201",detail:"@MockBean UserService in test. Verify JSON response body contains 'firstName', 'email' fields matching spency User type shape",url:"https://www.youtube.com/watch?v=Geq60OVyBPg",type:"yt"},
+{name:"Write CAControllerTest.java: test POST /api/cas with missing licenseNumber → 400 with errors array",detail:"Assert response body has errors[0].field = 'licenseNumber'. Verify error message is human-readable",url:"https://www.youtube.com/watch?v=Geq60OVyBPg",type:"yt"},
+{name:"Run ./mvnw test — all tests pass. Check target/surefire-reports/ for HTML report",detail:"Fix any failures. Add maven-surefire-plugin version to pom.xml. Print test count: should have at least 15 tests",url:"https://maven.apache.org/surefire/maven-surefire-plugin/",type:"doc"}
+]
+},
+8:{title:"PostgreSQL Setup + SQL Fundamentals",week:"Week 2 — Database & React",mock:true,
+dsa:[
+{name:"Number of Islands",time:"20m",url:LC+"number-of-islands/"},
+{name:"Clone Graph",time:"20m",url:LC+"clone-graph/"},
+{name:"Max Area of Island",time:"20m",url:LC+"max-area-of-island/"},
+{name:"Pacific Atlantic Water Flow",time:"20m",url:LC+"pacific-atlantic-water-flow/"},
+{name:"Surrounded Regions",time:"20m",url:LC+"surrounded-regions/"},
+{name:"Course Schedule II",time:"20m",url:LC+"course-schedule-ii/"}
+],
+learning:[
+{name:"PostgreSQL crash course – SELECT, JOINs, GROUP BY, indexes, constraints",resource:"freeCodeCamp PostgreSQL",url:"https://www.youtube.com/watch?v=qw--VYLpxG4",type:"yt"},
+{name:"PostgreSQL official tutorial",resource:"postgresql.org",url:"https://www.postgresql.org/docs/current/tutorial.html",type:"doc"}
+],
+project:[
+{name:"Install PostgreSQL locally (brew install postgresql@16). Run: createdb spency_db; createuser spency_user; GRANT ALL ON DATABASE spency_db TO spency_user",detail:"Test connection: psql -U spency_user -d spency_db. Confirm you get psql prompt",url:"https://www.postgresql.org/docs/current/tutorial-start.html",type:"doc"},
+{name:"Write V1__create_users.sql: id UUID PRIMARY KEY DEFAULT gen_random_uuid(), email VARCHAR(255) UNIQUE NOT NULL, role VARCHAR(50), first_name, last_name, deleted_at TIMESTAMP NULLABLE, created_at",detail:"CREATE INDEX idx_users_email ON users(email); CREATE INDEX idx_users_role ON users(role)",url:"https://www.postgresql.org/docs/",type:"doc"},
+{name:"Write V2__create_shopkeepers.sql: id UUID PK, user_id UUID FK→users.id ON DELETE CASCADE, business_name, category, location, is_verified BOOLEAN DEFAULT false",detail:"CREATE INDEX idx_shopkeepers_category ON shopkeepers(category) — used by spency GET /api/shopkeepers?category= query",url:"https://www.postgresql.org/docs/",type:"doc"},
+{name:"Write V3__create_cas.sql: id UUID PK, user_id FK→users.id, license_number VARCHAR UNIQUE, specialization, experience_years INT, is_verified BOOLEAN",detail:"CREATE INDEX idx_cas_specialization ON cas(specialization) — used by spency CA search page query",url:"https://www.postgresql.org/docs/",type:"doc"},
+{name:"Write V4__create_accounts.sql: id UUID PK, user_id UUID FK→users.id UNIQUE, balance DECIMAL(15,2) DEFAULT 0, currency CHAR(3) DEFAULT 'INR', created_at",detail:"1:1 with users. Balance field used by Saga pattern on Day 21 (debit on order creation)",url:"https://www.postgresql.org/docs/",type:"doc"},
+{name:"Run all SQL files in psql. Write 10 test queries: JOIN users+shopkeepers, COUNT by role, filter by category, subquery for verified CAs",detail:"Run EXPLAIN on each query — all index scans should appear for filtered queries (not Seq Scan)",url:"https://www.postgresql.org/docs/current/tutorial-select.html",type:"doc"}
+]
+},
+9:{title:"JPA / Hibernate – ORM & Spring Data",week:"Week 2 — Database & React",mock:false,
+dsa:[
+{name:"Implement Trie",time:"25m",url:LC+"implement-trie-prefix-tree/"},
+{name:"Design Add and Search Words",time:"20m",url:LC+"design-add-and-search-words-data-structure/"},
+{name:"Word Search II",time:"35m",url:LC+"word-search-ii/"},
+{name:"House Robber",time:"15m",url:LC+"house-robber/"},
+{name:"House Robber II",time:"15m",url:LC+"house-robber-ii/"},
+{name:"Longest Palindromic Substring",time:"10m",url:LC+"longest-palindromic-substring/"}
+],
+learning:[{name:"Spring Data JPA – @Entity, @Repository, JPQL, one-to-many, many-to-many",resource:"Amigoscode JPA Hibernate",url:"https://www.youtube.com/watch?v=8SGI_XS5OPw",type:"yt"}],
+project:[
+{name:"Add to pom.xml: spring-boot-starter-data-jpa, postgresql driver (runtime), flyway-core. Set application.properties: spring.datasource.url=jdbc:postgresql://localhost:5432/spency_db, spring.jpa.hibernate.ddl-auto=validate",detail:"spring.flyway.baseline-on-migrate=true in case DB already has tables. spring.jpa.show-sql=true for dev",url:"https://flywaydb.org/documentation/",type:"doc"},
+{name:"Move V1–V4 SQL files to src/main/resources/db/migration/. Start app — Flyway runs migrations automatically",detail:"Confirm in logs: 'Successfully applied 4 migrations'. Check psql: \\dt shows all 4 tables",url:"https://flywaydb.org/documentation/",type:"doc"},
+{name:"Annotate User.java: @Entity @Table(name='users') @Id @GeneratedValue(strategy=UUID) @Column(name='first_name') etc.",detail:"Add @CreationTimestamp createdAt and @UpdateTimestamp updatedAt. @SQLDelete for soft delete",url:"https://www.youtube.com/watch?v=8SGI_XS5OPw",type:"yt"},
+{name:"Annotate Shopkeeper.java and CA.java as @Entity. Add @ManyToOne(fetch=LAZY) User user with @JoinColumn(name='user_id')",detail:"ShopkeeperJpaRepository extends JpaRepository<Shopkeeper, UUID> — add findByCategory(String) method",url:"https://www.youtube.com/watch?v=8SGI_XS5OPw",type:"yt"},
+{name:"Create UserJpaRepository extends JpaRepository<User, UUID>: add findByEmail(Optional<User>), findAllByRole(UserRole)",detail:"Swap InMemoryUserRepository for JpaUserRepository in UserService constructor. Identical interface — zero other changes needed",url:"https://docs.spring.io/spring-data/jpa/docs/current/reference/html/",type:"doc"},
+{name:"Test: POST /api/users via Postman → SELECT * FROM users in psql confirms row inserted. Restart app → data still there",detail:"Run ./mvnw test — all existing tests still pass (Spring Boot Test starts embedded H2 for tests, not prod Postgres)",url:"https://www.youtube.com/watch?v=8SGI_XS5OPw",type:"yt"}
+]
+},
+10:{title:"JWT Authentication + Spring Security",week:"Week 2 — Database & React",mock:true,
+dsa:[
+{name:"Coin Change",time:"20m",url:LC+"coin-change/"},
+{name:"Longest Common Subsequence",time:"20m",url:LC+"longest-common-subsequence/"},
+{name:"Word Break",time:"20m",url:LC+"word-break/"},
+{name:"Combination Sum IV",time:"20m",url:LC+"combination-sum-iv/"},
+{name:"Partition Equal Subset Sum",time:"25m",url:LC+"partition-equal-subset-sum/"},
+{name:"Unique Paths",time:"15m",url:LC+"unique-paths/"}
+],
+learning:[{name:"Spring Security 6 + JWT – filter chain, token generation, validation, refresh",resource:"Amigoscode Spring Security JWT",url:"https://www.youtube.com/watch?v=KxqlJblhzfI",type:"yt"}],
+project:[
+{name:"Add to pom.xml: spring-boot-starter-security, io.jsonwebtoken:jjwt-api + jjwt-impl + jjwt-jackson (v0.12+)",detail:"Add jwt.secret (256-bit base64 string) and jwt.expiration-ms=86400000 (24h) in application.properties",url:"https://github.com/jwtk/jjwt",type:"doc"},
+{name:"Create RegisterRequest.java + LoginRequest.java + AuthResponse.java DTOs",detail:"AuthResponse: {token, userId, email, role} — shape must match spency AuthContext LOGIN action payload exactly",url:"https://www.youtube.com/watch?v=KxqlJblhzfI",type:"yt"},
+{name:"Create JwtService.java: generateToken(User), validateToken(String token), extractEmail(String), extractRole(String)",detail:"Use JJWT builder. Embed userId, email, role as JWT claims — spency frontend decodes token to read role for guard checks",url:"https://github.com/jwtk/jjwt",type:"doc"},
+{name:"Create JwtAuthFilter.java extends OncePerRequestFilter: extract Bearer token → validate → set SecurityContextHolder authentication",detail:"Extract from 'Authorization: Bearer {token}' header. On invalid token set authentication = null (Spring returns 401)",url:"https://www.youtube.com/watch?v=KxqlJblhzfI",type:"yt"},
+{name:"Create SecurityConfig.java: SecurityFilterChain permits /auth/**, /health, /api/version — protects /api/**. Add JwtAuthFilter before UsernamePasswordAuthenticationFilter. Disable CSRF.",detail:"sessionManagement = STATELESS. PasswordEncoder = BCryptPasswordEncoder bean",url:"https://docs.spring.io/spring-security/reference/servlet/architecture.html",type:"doc"},
+{name:"Create AuthController.java: POST /auth/register (hash password, save user, return token), POST /auth/login (verify BCrypt, return token)",detail:"Test: POST /auth/register → 201 {token:'eyJ...'}. GET /api/users with no token → 401. GET with valid token → 200",url:"https://www.youtube.com/watch?v=KxqlJblhzfI",type:"yt"}
+]
+},
+11:{title:"React Basics – Components, JSX, Props, Events",week:"Week 2 — Database & React",mock:false,
+dsa:[
+{name:"Merge k Sorted Lists",time:"30m",url:LC+"merge-k-sorted-lists/"},
+{name:"Find the Duplicate Number",time:"15m",url:LC+"find-the-duplicate-number/"},
+{name:"Trapping Rain Water",time:"30m",url:LC+"trapping-rain-water/"},
+{name:"Container With Most Water",time:"15m",url:LC+"container-with-most-water/"},
+{name:"3Sum",time:"20m",url:LC+"3sum/"},
+{name:"Two Sum II",time:"10m",url:LC+"two-sum-ii-input-array-is-sorted/"}
+],
+learning:[
+{name:"React Full Course 2024 – components, JSX, props, events, conditional rendering",resource:"Dave Gray React",url:"https://www.youtube.com/watch?v=RVFAyFWO4go",type:"yt"},
+{name:"React official Quick Start",resource:"react.dev",url:"https://react.dev/learn",type:"doc"}
+],
+project:[
+{name:"Create src/shared/services/api.js in spency: Axios instance with baseURL='http://localhost:8080'",detail:"Add request interceptor: read token from localStorage, attach as 'Authorization: Bearer {token}' on every request",url:"https://axios-http.com/docs/instance",type:"doc"},
+{name:"Update src/modules/user/services/userService.js: replace any mock data with real calls — getUsers(), getUserById(id), createUser(data), updateUser(id, data), deleteUser(id)",detail:"All use api.get/post/put/delete. Handle promise rejection by rethrowing for component error state",url:"https://vitejs.dev/guide/",type:"doc"},
+{name:"Update src/modules/shopkeeper/services/shopkeeperService.js: getShopkeepers(category), getShopkeeperById(id)",detail:"GET /api/shopkeepers?category={cat} if category provided, else GET /api/shopkeepers. Replaces ShopkeeperContext mock array",url:"https://vitejs.dev/guide/",type:"doc"},
+{name:"Update src/modules/ca/services/caService.js: getCAs(specialization), getCAById(id)",detail:"GET /api/cas?specialization={spec}. Replaces CAContext mock array. Confirm spency CA search page still works",url:"https://vitejs.dev/guide/",type:"doc"},
+{name:"Confirm components render real data. Fix any CORS errors (add http://localhost:5173 to Spring CorsConfiguration if missing)",detail:"Open DevTools Network tab: confirm all API calls go to localhost:8080/api/**. No mock data anywhere",url:"https://docs.spring.io/spring-framework/reference/web/webmvc-cors.html",type:"doc"}
+]
+},
+12:{title:"React Hooks – useState, useEffect, useContext, custom hooks",week:"Week 2 — Database & React",mock:true,
+dsa:[
+{name:"Permutations",time:"20m",url:LC+"permutations/"},
+{name:"Subsets",time:"15m",url:LC+"subsets/"},
+{name:"Combination Sum",time:"20m",url:LC+"combination-sum/"},
+{name:"Letter Combinations of a Phone Number",time:"20m",url:LC+"letter-combinations-of-a-phone-number/"},
+{name:"Word Search",time:"20m",url:LC+"word-search/"},
+{name:"N-Queens",time:"25m",url:LC+"n-queens/"}
+],
+learning:[{name:"React Hooks deep dive – useState, useEffect, useContext, useRef, custom hooks",resource:"Fireship React Hooks",url:"https://www.youtube.com/watch?v=TNhaISOUy6Q",type:"yt"}],
+project:[
+{name:"Refactor AuthContext.jsx to useReducer: actions LOGIN, LOGOUT, REFRESH_TOKEN, SET_LOADING",detail:"State shape: {user, token, role, isLoading, isAuthenticated}. On LOGIN dispatch: store token in localStorage too",url:"https://react.dev/reference/react/useReducer",type:"doc"},
+{name:"Create src/shared/hooks/useAuth.js: wraps AuthContext, exposes login(email, pwd), logout(), isAuthenticated, user, role",detail:"login() calls POST /auth/login via api.js. On 200: dispatch LOGIN. On 401: throw error for form to catch",url:"https://react.dev/learn/reusing-logic-with-custom-hooks",type:"doc"},
+{name:"Create src/shared/hooks/useShopkeeper.js: wraps ShopkeeperContext, exposes shopkeepers, loading, error, filterByCategory(cat)",detail:"Calls shopkeeperService.getShopkeepers() on mount via useEffect. filterByCategory is client-side filter",url:"https://react.dev/learn/reusing-logic-with-custom-hooks",type:"doc"},
+{name:"Create src/shared/hooks/useCA.js: wraps CAContext, exposes cas, loading, error, filterBySpecialization(spec)",detail:"Same pattern as useShopkeeper. Used by spency CA search page instead of reading context directly",url:"https://react.dev/learn/reusing-logic-with-custom-hooks",type:"doc"},
+{name:"Move all fetch/axios calls out of JSX component bodies into service files. Components call hooks only",detail:"No direct api.get() in any .jsx file — only via hooks. Verify spency login form uses useAuth().login() not direct fetch",url:"https://react.dev/reference/react",type:"doc"}
+]
+},
+13:{title:"React Router v6 + Protected Routes + Forms",week:"Week 2 — Database & React",mock:false,
+dsa:[
+{name:"Kth Smallest in BST",time:"15m",url:LC+"kth-smallest-element-in-a-bst/"},
+{name:"Lowest Common Ancestor of BST",time:"15m",url:LC+"lowest-common-ancestor-of-a-binary-search-tree/"},
+{name:"Validate BST",time:"20m",url:LC+"validate-binary-search-tree/"},
+{name:"Construct Binary Tree Preorder+Inorder",time:"25m",url:LC+"construct-binary-tree-from-preorder-and-inorder-traversal/"},
+{name:"Binary Tree Right Side View",time:"20m",url:LC+"binary-tree-right-side-view/"},
+{name:"Serialize and Deserialize Binary Tree",time:"25m",url:LC+"serialize-and-deserialize-binary-tree/"}
+],
+learning:[{name:"React Router v6 – routes, nested routes, useNavigate, protected routes",resource:"Web Dev Simplified React Router",url:"https://www.youtube.com/watch?v=Ul3y1LXxzdU",type:"yt"}],
+project:[
+{name:"Review src/app/guards/ — confirm AuthGuard.jsx exists. If not, create it: if (!isAuthenticated) navigate('/login')",detail:"Wrap all private route groups in App.jsx with <AuthGuard>. Test: visit /dashboard without login → redirected to /login",url:"https://reactrouter.com/en/main/start/tutorial",type:"doc"},
+{name:"Create AdminGuard.jsx: if (role !== 'ADMIN') navigate('/403')",detail:"Used to wrap AdminRoutes in App.jsx. Login as USER → try /admin → expect redirect to /403",url:"https://reactrouter.com/en/main/start/tutorial",type:"doc"},
+{name:"Create ShopkeeperGuard.jsx: if (role !== 'SHOPKEEPER' && role !== 'ADMIN') navigate('/403')",detail:"Shopkeeper routes visible to both SHOPKEEPER and ADMIN roles",url:"https://reactrouter.com/en/main/start/tutorial",type:"doc"},
+{name:"Create CAGuard.jsx: if (role !== 'CA' && role !== 'ADMIN') navigate('/403')",detail:"CA dashboard and profile management pages protected by this guard",url:"https://reactrouter.com/en/main/start/tutorial",type:"doc"},
+{name:"Create pages/Forbidden.jsx: 403 page with 'Access Denied' message + role-appropriate home link. Add /403 route in App.jsx",detail:"Test all 4 guard scenarios: USER tries /admin → /403; SHOPKEEPER tries /admin → /403; ADMIN accesses all → OK",url:"https://reactrouter.com/en/main/start/tutorial",type:"doc"}
+]
+},
+14:{title:"Connect React → Spring API – Full Stack Integration",week:"Week 2 — Database & React",mock:true,
+dsa:[
+{name:"Find Median from Data Stream",time:"30m",url:LC+"find-median-from-data-stream/"},
+{name:"Task Scheduler",time:"20m",url:LC+"task-scheduler/"},
+{name:"Design Twitter",time:"30m",url:LC+"design-twitter/"},
+{name:"Reorganize String",time:"20m",url:LC+"reorganize-string/"},
+{name:"K Closest Points to Origin",time:"20m",url:LC+"k-closest-points-to-origin/"}
+],
+learning:[{name:"Axios + CORS config in Spring Boot + API error handling patterns",resource:"Axios Crash Course – Traversy",url:"https://www.youtube.com/watch?v=6LyagkoRWYA",type:"yt"}],
+project:[
+{name:"Full smoke test: register new user → login → JWT in AuthContext → navigate all 6 module pages (auth/user/ca/admin/shopkeeper/account)",detail:"Each module must load real API data. Check DevTools Network: no 4xx or 5xx errors on any module load",url:"https://www.youtube.com/watch?v=6LyagkoRWYA",type:"yt"},
+{name:"Add global Axios response interceptor in api.js: on 401 response → dispatch LOGOUT + navigate('/login')",detail:"This handles expired JWT tokens automatically across all 6 modules. Test: manually expire token in localStorage → next API call logs you out",url:"https://axios-http.com/docs/interceptors",type:"doc"},
+{name:"Install react-hot-toast (npm install react-hot-toast). Add <Toaster position='top-right' /> in providers.jsx",detail:"Add toast.success('Login successful') in useAuth.login(). Add toast.error(err.message) in all service catch blocks",url:"https://react-hot-toast.com/",type:"doc"},
+{name:"Verify /admin route blocked for USER role → redirects to /403. Admin login → /admin loads successfully",detail:"Login as different roles and confirm each guard works. Check no console errors in browser",url:"https://reactrouter.com/en/main/start/tutorial",type:"doc"},
+{name:"Verify ShopkeeperContext, CAContext, BlogContext all fetch real data on app load (no mock arrays)",detail:"Open Network tab: confirm GET /api/shopkeepers, GET /api/cas called on app startup. Contexts update with real data",url:"https://vitejs.dev/guide/",type:"doc"}
+]
+},
+15:{title:"Node.js Basics – Event Loop, Async/Await, Modules",week:"Week 3 — Node.js, Microservices & Cloud",mock:false,
+dsa:[
+{name:"Reverse Bits",time:"15m",url:LC+"reverse-bits/"},
+{name:"Number of 1 Bits",time:"10m",url:LC+"number-of-1-bits/"},
+{name:"Missing Number",time:"10m",url:LC+"missing-number/"},
+{name:"Sum of Two Integers",time:"20m",url:LC+"sum-of-two-integers/"},
+{name:"Counting Bits",time:"15m",url:LC+"counting-bits/"},
+{name:"Single Number",time:"10m",url:LC+"single-number/"},
+{name:"Spiral Matrix",time:"20m",url:LC+"spiral-matrix/"},
+{name:"Rotate Image",time:"20m",url:LC+"rotate-image/"}
+],
+learning:[
+{name:"Node.js Crash Course – event loop, async/await, fs, http, npm",resource:"Traversy Media Node.js",url:"https://www.youtube.com/watch?v=fBNz5xF-Kx4",type:"yt"},
+{name:"Node.js official docs",resource:"nodejs.org",url:"https://nodejs.org/en/docs",type:"doc"}
+],
+project:[
+{name:"mkdir spency-order-service && npm init -y. Install: express dotenv cors morgan express-async-errors",detail:"Set 'engines': {'node': '>=20'} in package.json. Create .env: PORT=3001, NODE_ENV=development",url:"https://nodejs.org/en/docs",type:"doc"},
+{name:"Create src/server.js: Express app on port 3001 with cors({origin:'http://localhost:5173'}), morgan('dev'), express.json()",detail:"Export app and start server separately (for testability). Log 'spency-order-service running on port 3001'",url:"https://expressjs.com/",type:"doc"},
+{name:"Create src/routes/orderRoutes.js: POST /orders, GET /orders/:id, GET /orders?userId=, PATCH /orders/:id/status",detail:"PATCH updates status: pending → confirmed → shipped → delivered. Validate status transitions",url:"https://expressjs.com/en/guide/routing.html",type:"doc"},
+{name:"Create src/controllers/orderController.js: createOrder(), getOrderById(), getOrdersByUser(), updateOrderStatus()",detail:"createOrder validates: userId required, items array non-empty, each item has productId+qty+price. Return 400 if invalid",url:"https://expressjs.com/en/guide/routing.html",type:"doc"},
+{name:"Create src/middleware/errorHandler.js: catches all async errors, returns {status, message, timestamp} JSON",detail:"Register as last middleware: app.use(errorHandler). Matches spency frontend ErrorResponse DTO shape from Spring",url:"https://expressjs.com/en/guide/error-handling.html",type:"doc"},
+{name:"Test with Postman: POST /orders {userId:'123', items:[{productId:'abc', qty:2, price:100}]} → 201. GET /orders?userId=123 → [order]",detail:"Test PATCH /orders/{id}/status {status:'confirmed'} → 200 updated. PATCH with invalid status → 400",url:"https://expressjs.com/en/guide/error-handling.html",type:"doc"}
+]
+},
+16:{title:"Express.js REST APIs + Middleware + Validation",week:"Week 3 — Node.js, Microservices & Cloud",mock:true,
+dsa:[
+{name:"Jump Game",time:"15m",url:LC+"jump-game/"},
+{name:"Jump Game II",time:"20m",url:LC+"jump-game-ii/"},
+{name:"Gas Station",time:"20m",url:LC+"gas-station/"},
+{name:"Hand of Straights",time:"20m",url:LC+"hand-of-straights/"},
+{name:"Merge Triplets to Form Target",time:"20m",url:LC+"merge-triplets-to-form-target-triplet/"},
+{name:"Partition Labels",time:"25m",url:LC+"partition-labels/"}
+],
+learning:[
+{name:"Express.js Crash Course – routing, middleware, error handling, req/res cycle",resource:"Traversy Media Express",url:"https://www.youtube.com/watch?v=L72fhGm1tfE",type:"yt"},
+{name:"Express.js official docs",resource:"expressjs.com",url:"https://expressjs.com/en/guide/routing.html",type:"doc"}
+],
+project:[
+{name:"mkdir spency-gateway && npm init -y. Install: express http-proxy-middleware jsonwebtoken morgan dotenv",detail:"Gateway runs on port 8090. All spency frontend traffic will route through here. Set JWT_SECRET same as Spring backend",url:"https://expressjs.com/",type:"doc"},
+{name:"Create proxy rule: /api/users/* + /api/shopkeepers/* + /api/cas/* + /auth/* → http://localhost:8080 (Spring)",detail:"Use createProxyMiddleware({target:'http://localhost:8080', changeOrigin:true, pathRewrite:{'^/':'/'}}) for each prefix",url:"https://github.com/chimurai/http-proxy-middleware",type:"doc"},
+{name:"Create proxy rule: /api/orders/* → http://localhost:3001 (Node order service)",detail:"Gateway is single entry point. React frontend never calls :8080 or :3001 directly after today",url:"https://github.com/chimurai/http-proxy-middleware",type:"doc"},
+{name:"Create src/middleware/authMiddleware.js: verify JWT from 'Authorization: Bearer {token}' header → reject 401 if missing/invalid",detail:"Skip auth check for /auth/* paths (register/login). Use jsonwebtoken.verify(token, process.env.JWT_SECRET)",url:"https://github.com/auth0/node-jsonwebtoken",type:"doc"},
+{name:"Update spency frontend api.js baseURL from http://localhost:8080 to http://localhost:8090",detail:"All 6 module service files automatically route through gateway. No other frontend changes needed",url:"https://vitejs.dev/guide/",type:"doc"},
+{name:"Test full flow through gateway: login → all 6 modules load. Try request without JWT → gateway returns 401",detail:"Verify morgan logs show requests hitting gateway. Fix any CORS issues on gateway (add cors() middleware)",url:"https://expressjs.com/en/guide/error-handling.html",type:"doc"}
+]
+},
+17:{title:"MongoDB + Mongoose – Order Service Persistence",week:"Week 3 — Node.js, Microservices & Cloud",mock:false,
+dsa:[
+{name:"Min Cost Climbing Stairs",time:"15m",url:LC+"min-cost-climbing-stairs/"},
+{name:"Decode Ways",time:"20m",url:LC+"decode-ways/"},
+{name:"Jump Game III",time:"20m",url:LC+"jump-game-iii/"},
+{name:"Longest Increasing Subsequence",time:"20m",url:LC+"longest-increasing-subsequence/"},
+{name:"Edit Distance",time:"35m",url:LC+"edit-distance/"},
+{name:"Distinct Subsequences",time:"10m",url:LC+"distinct-subsequences/"}
+],
+learning:[{name:"MongoDB + Mongoose – schema, model, CRUD, populate, aggregation",resource:"Web Dev Simplified Mongoose",url:"https://www.youtube.com/watch?v=DZBGEVgL2eE",type:"yt"}],
+project:[
+{name:"Create free MongoDB Atlas M0 cluster. Create database 'spency_orders'. Get connection string",detail:"Add MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/spency_orders?retryWrites=true to spency-order-service .env",url:"https://www.mongodb.com/cloud/atlas",type:"doc"},
+{name:"npm install mongoose in spency-order-service. Create src/config/database.js: mongoose.connect(process.env.MONGO_URI)",detail:"Call connectDB() in server.js before app.listen(). Log 'MongoDB connected to spency_orders' on success",url:"https://mongoosejs.com/docs/guide.html",type:"doc"},
+{name:"Create src/models/Order.js: Schema with userId(String,required), items([{productId,qty,price}]), status(enum:['pending','confirmed','shipped','delivered']), total(Number), createdAt(Date,default:Date.now)",detail:"Add pre('save') hook: this.total = this.items.reduce((sum,i) => sum + i.qty*i.price, 0)",url:"https://mongoosejs.com/docs/guide.html",type:"doc"},
+{name:"Update createOrder() controller: Order.create({userId, items}) → returns saved document with auto-calculated total",detail:"Update getOrdersByUser(): Order.find({userId}).sort({createdAt:-1}).limit(50)",url:"https://mongoosejs.com/docs/api/model.html",type:"doc"},
+{name:"Test end-to-end: POST /orders via Postman → check MongoDB Atlas Data Explorer shows new document with correct total",detail:"GET /orders?userId=X returns array. PATCH /orders/{id}/status {status:'confirmed'} → Atlas record updated",url:"https://mongoosejs.com/docs/guide.html",type:"doc"}
+]
+},
+18:{title:"Microservices Communication – REST + Circuit Breaker",week:"Week 3 — Node.js, Microservices & Cloud",mock:true,
+dsa:[
+{name:"Flood Fill",time:"15m",url:LC+"flood-fill/"},
+{name:"01 Matrix",time:"20m",url:LC+"01-matrix/"},
+{name:"Rotting Oranges",time:"20m",url:LC+"rotting-oranges/"},
+{name:"Walls and Gates",time:"20m",url:LC+"walls-and-gates/"},
+{name:"Shortest Path in Binary Matrix",time:"25m",url:LC+"shortest-path-in-binary-matrix/"},
+{name:"Word Ladder",time:"20m",url:LC+"word-ladder/"}
+],
+learning:[{name:"Microservices patterns – sync REST, async events, API Gateway, service mesh",resource:"ByteByteGo Microservices",url:"https://www.youtube.com/watch?v=lTAcCNbJ7KE",type:"yt"}],
+project:[
+{name:"Add to pom.xml: resilience4j-spring-boot3, spring-boot-starter-actuator, spring-boot-starter-aop",detail:"Add in application.yml: resilience4j.circuitbreaker.instances.orderService.slidingWindowSize=5, failureRateThreshold=50",url:"https://resilience4j.readme.io/docs/circuitbreaker",type:"doc"},
+{name:"Create OrderServiceClient.java: calls GET http://localhost:8090/api/orders?userId={id} via RestTemplate",detail:"@Component. Inject RestTemplate @Bean. Returns List<OrderResponse>. HTTP call goes through spency-gateway",url:"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html",type:"doc"},
+{name:"Add @CircuitBreaker(name='orderService', fallbackMethod='getOrdersFallback') on getOrders(String userId)",detail:"fallback returns empty List<OrderResponse>. After 5 failures circuit opens, fallback fires immediately without HTTP call",url:"https://resilience4j.readme.io/docs/circuitbreaker",type:"doc"},
+{name:"Add @Retry(name='orderService', maxAttempts=3) on POST order creation call",detail:"3 retry attempts with 500ms wait. After all fail: circuit breaker takes over. Configure in application.yml",url:"https://resilience4j.readme.io/docs/retry",type:"doc"},
+{name:"Test: stop spency-order-service. Call GET /api/users/{id} from Spring (which fetches orders). Should return user with orders:[] from fallback",detail:"Restart order-service: circuit closes after success threshold. Orders load again. Check /actuator/health for circuit state",url:"https://resilience4j.readme.io/docs/circuitbreaker",type:"doc"}
+]
+},
+19:{title:"Redis – Caching, TTL, Rate Limiting",week:"Week 3 — Node.js, Microservices & Cloud",mock:false,
+dsa:[
+{name:"Number of Connected Components",time:"20m",url:LC+"number-of-connected-components-in-an-undirected-graph/"},
+{name:"Graph Valid Tree",time:"20m",url:LC+"graph-valid-tree/"},
+{name:"Redundant Connection",time:"20m",url:LC+"redundant-connection/"},
+{name:"Accounts Merge",time:"25m",url:LC+"accounts-merge/"},
+{name:"Longest Substring Without Repeating",time:"20m",url:LC+"longest-substring-without-repeating-characters/"},
+{name:"Minimum Window Substring",time:"15m",url:LC+"minimum-window-substring/"}
+],
+learning:[
+{name:"Redis crash course – strings, hashes, sorted sets, TTL, pub/sub",resource:"TechWorld with Nana Redis",url:"https://www.youtube.com/watch?v=jgpVdJB2sKQ",type:"yt"},
+{name:"Spring Boot Redis with Lettuce",resource:"Baeldung",url:"https://www.baeldung.com/spring-data-redis-tutorial",type:"doc"}
+],
+project:[
+{name:"Add spring-boot-starter-data-redis to pom.xml. Add redis:7-alpine to docker-compose.yml (ports: 6379:6379). Set spring.data.redis.host=localhost + port=6379",detail:"Run docker-compose up redis. Spring auto-connects on startup. Check logs: 'Connected to Redis'",url:"https://www.baeldung.com/spring-data-redis-tutorial",type:"doc"},
+{name:"Create RedisCacheConfig.java: @EnableCaching + @Bean CacheManager with RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5))",detail:"5m TTL for all caches by default. Add @EnableCaching on SpencyApplication class",url:"https://docs.spring.io/spring-data/redis/docs/current/reference/html/",type:"doc"},
+{name:"Add @Cacheable('users') on UserService.getUserById(id). Add @CacheEvict(value='users', key='#id') on updateUser() and deleteUser()",detail:"First GET /api/users/1: DB query + cache write. Second GET: Redis serves it (no DB log). Update/Delete evicts key",url:"https://www.baeldung.com/spring-data-redis-tutorial",type:"doc"},
+{name:"Add @Cacheable('shopkeepers') on ShopkeeperService.findAll() and findByCategory(cat). Add @CacheEvict on create/update/delete",detail:"Spency shopkeeper listings are read-heavy. 5m TTL means dashboard loads fast on repeat visits",url:"https://www.baeldung.com/spring-data-redis-tutorial",type:"doc"},
+{name:"Add @Cacheable('cas') on CAService.findAll() and findBySpecialization(spec)",detail:"CA search results cached. Spency CA listing page loads from Redis on subsequent visits within 5 minutes",url:"https://www.baeldung.com/spring-data-redis-tutorial",type:"doc"},
+{name:"Verify caching: GET /api/shopkeepers twice. First call logs SQL. Second call: no SQL log (Redis). Run redis-cli KEYS '*' to see cached keys",detail:"Test eviction: POST /api/shopkeepers → @CacheEvict fires → GET /api/shopkeepers again → fresh DB query",url:"https://redis.io/docs/connect/cli/",type:"doc"}
+]
+},
+20:{title:"Kafka – Topics, Producers, Consumers",week:"Week 3 — Node.js, Microservices & Cloud",mock:true,
+dsa:[
+{name:"Alien Dictionary",time:"25m",url:LC+"alien-dictionary/"},
+{name:"Topological Sort (Course Schedule)",time:"25m",url:LC+"course-schedule/"},
+{name:"Network Delay Time",time:"20m",url:LC+"network-delay-time/"},
+{name:"Cheapest Flights Within K Stops",time:"25m",url:LC+"cheapest-flights-within-k-stops/"},
+{name:"Swim in Rising Water",time:"25m",url:LC+"swim-in-rising-water/"}
+],
+learning:[
+{name:"Kafka in 30 minutes – topics, partitions, offsets, consumer groups",resource:"Conduktor Kafka",url:"https://www.youtube.com/watch?v=uvb00oaa3k8",type:"yt"},
+{name:"Apache Kafka Documentation",resource:"kafka.apache.org",url:"https://kafka.apache.org/documentation/",type:"doc"}
+],
+project:[
+{name:"Add to docker-compose.yml: zookeeper (confluentinc/cp-zookeeper:7.5) on port 2181, kafka (confluentinc/cp-kafka:7.5) on port 9092 with KAFKA_ZOOKEEPER_CONNECT + KAFKA_AUTO_CREATE_TOPICS_ENABLE=true",detail:"Run docker-compose up -d zookeeper kafka. Verify: docker exec kafka kafka-topics.sh --bootstrap-server localhost:9092 --list",url:"https://kafka.apache.org/quickstart",type:"doc"},
+{name:"Add spring-kafka to pom.xml. Create KafkaProducerConfig.java: StringSerializer for key+value, bootstrap.servers=localhost:9092",detail:"Create KafkaConsumerConfig.java: StringDeserializer, group-id=spency-notifications, auto.offset.reset=earliest",url:"https://docs.spring.io/spring-kafka/docs/current/reference/html/",type:"doc"},
+{name:"Create KafkaTopicConfig.java: @Bean NewTopic for 'spency-order-events' (3 partitions, 1 replica) and 'spency-saga-compensations' (1 partition)",detail:"3 partitions for order-events allows parallel consumption. 1 partition for compensations ensures ordered processing",url:"https://docs.spring.io/spring-kafka/docs/current/reference/html/",type:"doc"},
+{name:"In spency-order-service: npm install kafkajs. On createOrder() success: publish to spency-order-events topic with key=orderId",detail:"Message value: JSON.stringify({orderId, userId, total, items, timestamp}). Use kafkajs producer.send()",url:"https://kafka.js.org/docs/getting-started",type:"doc"},
+{name:"Create OrderEventConsumer.java in Spring: @KafkaListener(topics='spency-order-events', groupId='spency-notifications')",detail:"On message: parse JSON, log 'Order created: {orderId} for user {userId} total {total}', increment user.orderCount in DB",url:"https://docs.spring.io/spring-kafka/docs/current/reference/html/",type:"doc"},
+{name:"Test: docker-compose up. POST /orders via Node order service → Spring consumer logs order event within 1-2 seconds",detail:"Run kafka-console-consumer.sh --topic spency-order-events --from-beginning to see raw messages",url:"https://kafka.apache.org/quickstart",type:"doc"}
+]
+},
+21:{title:"Event-Driven Architecture – Saga Pattern",week:"Week 3 — Node.js, Microservices & Cloud",mock:false,
+dsa:[
+{name:"Majority Element",time:"10m",url:LC+"majority-element/"},
+{name:"Next Permutation",time:"20m",url:LC+"next-permutation/"},
+{name:"Wiggle Sort II",time:"20m",url:LC+"wiggle-sort-ii/"},
+{name:"Reverse Pairs",time:"30m",url:LC+"reverse-pairs/"},
+{name:"Sort Colors",time:"15m",url:LC+"sort-colors/"},
+{name:"Min Arrows to Burst Balloons",time:"25m",url:LC+"minimum-number-of-arrows-to-burst-balloons/"}
+],
+learning:[{name:"Event driven architecture – Saga, Outbox pattern, eventual consistency",resource:"GOTO Conf Event Driven",url:"https://www.youtube.com/watch?v=STKCRSUsyP0",type:"yt"}],
+project:[
+{name:"Create AccountDebitEvent.java POJO: orderId(UUID), userId(UUID), amount(BigDecimal), timestamp. Create CompensateOrderEvent.java: orderId, reason",detail:"Serialize to JSON for Kafka. Add @JsonFormat on timestamp field for ISO-8601 format",url:"https://www.youtube.com/watch?v=STKCRSUsyP0",type:"yt"},
+{name:"Create AccountService.java: debit(UUID userId, BigDecimal amount) — throws InsufficientFundsException if balance < amount",detail:"On success: update balance in DB + publish AccountDebitedEvent to 'spency-account-events' topic",url:"https://www.youtube.com/watch?v=STKCRSUsyP0",type:"yt"},
+{name:"@KafkaListener on OrderEventConsumer: on 'spency-order-events' → call accountService.debit(). On InsufficientFundsException → publish CompensateOrderEvent to 'spency-saga-compensations'",detail:"This is the Saga coordinator. Order created → debit attempted → success or compensate",url:"https://www.youtube.com/watch?v=STKCRSUsyP0",type:"yt"},
+{name:"@KafkaListener on CompensationConsumer: on 'spency-saga-compensations' → call Node order service PATCH /orders/{orderId}/status {status:'failed'}",detail:"Use RestTemplate to call spency-gateway. Failed order visible in spency order history as 'Payment Failed'",url:"https://www.youtube.com/watch?v=STKCRSUsyP0",type:"yt"},
+{name:"Add idempotency: before processing any OrderCreatedEvent, check Redis SET NX 'processed:{orderId}' EX 86400",detail:"If key already exists: log 'Skipping duplicate event {orderId}' and return. Prevents double-processing on Kafka redelivery",url:"https://redis.io/docs/",type:"doc"},
+{name:"Test Saga: create order with userId that has insufficient account balance → confirm CompensateOrderEvent published → order status becomes 'failed' in MongoDB Atlas",detail:"Replay same event (send same message to Kafka again) → confirm idempotency check skips it",url:"https://www.youtube.com/watch?v=STKCRSUsyP0",type:"yt"}
+]
+},
+22:{title:"Docker – Containers, Images, Compose",week:"Week 4 — Cloud, Architecture & AI",mock:true,
+dsa:[
+{name:"Min Cost to Connect Ropes",time:"15m",url:LC+"minimum-cost-to-connect-sticks/"},
+{name:"Min Interval for Each Query",time:"30m",url:LC+"minimum-interval-to-include-each-query/"},
+{name:"Car Fleet",time:"20m",url:LC+"car-fleet/"},
+{name:"Asteroid Collision",time:"20m",url:LC+"asteroid-collision/"},
+{name:"Decode String",time:"20m",url:LC+"decode-string/"},
+{name:"Remove K Digits",time:"15m",url:LC+"remove-k-digits/"}
+],
+learning:[
+{name:"Docker in 100 seconds + full crash course – images, volumes, networking",resource:"Fireship Docker",url:"https://www.youtube.com/watch?v=Gjnup-PuquQ",type:"yt"},
+{name:"Docker official Get Started",resource:"docs.docker.com",url:"https://docs.docker.com/get-started/",type:"doc"}
+],
+project:[
+{name:"Write Dockerfile for spency-backend: FROM maven:3.9-eclipse-temurin-21 AS build (RUN mvn package -DskipTests), FROM eclipse-temurin:21-jre AS run (COPY --from=build target/*.jar app.jar)",detail:"Multi-stage build: final image ~250MB not 600MB. EXPOSE 8080. CMD ['java','-jar','app.jar']",url:"https://docs.docker.com/develop/develop-images/multistage-build/",type:"doc"},
+{name:"Write Dockerfile for spency-order-service: FROM node:20-alpine. RUN addgroup -S nodejs && adduser -S node -G nodejs. COPY package*.json ./. RUN npm ci --only=production. COPY src/ ./src/. EXPOSE 3001. CMD ['node','src/server.js']",detail:"Non-root user for security. --only=production excludes devDependencies from image",url:"https://docs.docker.com/get-started/",type:"doc"},
+{name:"Write Dockerfile for spency-gateway: same node:20-alpine pattern. EXPOSE 8090",detail:"Copy .env.example as documentation but read env vars from docker-compose environment section",url:"https://docs.docker.com/get-started/",type:"doc"},
+{name:"Update docker-compose.yml: 7 services: postgres, mongo, redis, zookeeper, kafka, spency-backend, spency-order-service, spency-gateway. Each with environment: section for all required env vars",detail:"depends_on: spency-backend depends on postgres + redis + kafka being healthy. Gateway depends on backend + order-service",url:"https://docs.docker.com/compose/",type:"doc"},
+{name:"Add healthcheck to each service in docker-compose. Postgres: test: pg_isready -U spency_user. Spring: test: curl -f http://localhost:8080/health. Node services: test: curl -f http://localhost:{port}/health",detail:"interval: 30s, timeout: 10s, retries: 3. Services marked 'depends_on: condition: service_healthy'",url:"https://docs.docker.com/compose/compose-file/05-services/",type:"doc"},
+{name:"Run docker-compose up --build. Confirm all 8 containers start healthy. Test: POST http://localhost:8090/auth/register returns 201",detail:"Check with: docker-compose ps (all should show 'healthy'). Fix any startup failures with docker-compose logs {service}",url:"https://docs.docker.com/compose/",type:"doc"}
+]
+},
+23:{title:"Dockerize All Services + GitHub Actions CI",week:"Week 4 — Cloud, Architecture & AI",mock:false,
+dsa:[
+{name:"Find All Anagrams in String",time:"20m",url:LC+"find-all-anagrams-in-a-string/"},
+{name:"Permutation in String",time:"15m",url:LC+"permutation-in-string/"},
+{name:"Longest Repeating Char Replacement",time:"20m",url:LC+"longest-repeating-character-replacement/"},
+{name:"Sliding Window Maximum",time:"25m",url:LC+"sliding-window-maximum/"},
+{name:"Minimum Size Subarray Sum",time:"15m",url:LC+"minimum-size-subarray-sum/"},
+{name:"Fruit Into Baskets",time:"25m",url:LC+"fruit-into-baskets/"}
+],
+learning:[{name:"GitHub Actions CI – build, test, push image to Docker Hub on push",resource:"TechWorld with Nana GitHub Actions",url:"https://www.youtube.com/watch?v=R8_veQiYBjI",type:"yt"}],
+project:[
+{name:"Create .github/workflows/backend-ci.yml: trigger on push to main/develop, runs-on: ubuntu-latest",detail:"Steps: actions/checkout, actions/setup-java@v4 (java-version:21), actions/cache (maven), ./mvnw test, docker/build-push-action to Docker Hub tagged with latest + github.sha",url:"https://docs.github.com/en/actions/publishing-packages/publishing-docker-images",type:"doc"},
+{name:"Create .github/workflows/frontend-ci.yml: node 20, npm ci, npm run build. On PR also run: npx eslint src/ (fail CI on lint errors)",detail:"Use actions/upload-artifact to save dist/ folder for 30 days. Future step: auto-deploy to S3",url:"https://docs.github.com/en/actions",type:"doc"},
+{name:"Create .github/workflows/order-service-ci.yml and gateway-ci.yml: node 20, npm ci, npm test, docker build + push",detail:"Tag images: {dockerhub-user}/spency-{service}:${{github.sha}} and :latest",url:"https://docs.github.com/en/actions",type:"doc"},
+{name:"Add GitHub repository secrets: DOCKER_USERNAME, DOCKER_PASSWORD. Go to Settings → Secrets → Actions → New repository secret",detail:"Never commit credentials. Use GITHUB_TOKEN for GitHub Container Registry as alternative to Docker Hub",url:"https://docs.github.com/en/actions/security-guides/encrypted-secrets",type:"doc"},
+{name:"Push to main branch → open Actions tab → all 4 workflows should go green. Check Docker Hub — all 3 images appear",detail:"Fix any test failures. Images should be tagged with both :latest and the git SHA",url:"https://docs.github.com/en/actions",type:"doc"},
+{name:"Add CI status badges to README.md: ![Backend CI]({repo-url}/actions/workflows/backend-ci.yml/badge.svg) x3",detail:"Green badges confirm CI is healthy. Merge to main → README shows 4 green badges",url:"https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge",type:"doc"}
+]
+},
+24:{title:"AWS EC2 – Launch, Configure, Deploy App",week:"Week 4 — Cloud, Architecture & AI",mock:true,
+dsa:[
+{name:"Non-overlapping Intervals",time:"20m",url:LC+"non-overlapping-intervals/"},
+{name:"Interval List Intersections",time:"20m",url:LC+"interval-list-intersections/"},
+{name:"Min Rounds to Complete Tasks",time:"15m",url:LC+"minimum-rounds-to-complete-all-tasks/"},
+{name:"Maximum Points on a Line",time:"25m",url:LC+"max-points-on-a-line/"},
+{name:"Min Domino Rotations",time:"20m",url:LC+"minimum-domino-rotations-for-equal-row/"},
+{name:"Max Sum Obtained of Any Permutation",time:"20m",url:LC+"maximum-sum-obtained-of-any-permutation/"}
+],
+learning:[
+{name:"AWS for Beginners – EC2, security groups, SSH, Elastic IP (first 2h)",resource:"freeCodeCamp AWS",url:"https://www.youtube.com/watch?v=ulprqHHWlng",type:"yt"},
+{name:"AWS EC2 User Guide",resource:"docs.aws.amazon.com",url:"https://docs.aws.amazon.com/ec2/",type:"doc"}
+],
+project:[
+{name:"Launch EC2 t2.micro (Amazon Linux 2023) in us-east-1. Create key pair spency-key.pem. chmod 400 spency-key.pem locally",detail:"SSH in: ssh -i spency-key.pem ec2-user@{public-ip}. You should get EC2 shell prompt",url:"https://docs.aws.amazon.com/ec2/",type:"doc"},
+{name:"On EC2: sudo yum update -y. Install Docker: sudo yum install docker -y && sudo systemctl start docker && sudo usermod -aG docker ec2-user",detail:"Install Docker Compose v2: sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose",url:"https://docs.docker.com/engine/install/",type:"doc"},
+{name:"Create /home/ec2-user/spency.env on EC2 with: SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME/PASSWORD, MONGO_URI, REDIS_HOST=redis, JWT_SECRET, OPENAI_API_KEY",detail:"Never commit this file. In production use AWS SSM Parameter Store instead. chmod 600 spency.env",url:"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html",type:"doc"},
+{name:"Copy docker-compose.yml to EC2 (scp -i spency-key.pem docker-compose.yml ec2-user@{ip}:~/). Run: docker-compose --env-file spency.env pull && docker-compose --env-file spency.env up -d",detail:"Images pulled from Docker Hub. All containers start. Check: docker-compose ps — all healthy",url:"https://docs.docker.com/compose/",type:"doc"},
+{name:"Configure Security Group inbound rules: port 8090 (gateway) TCP from 0.0.0.0/0. Port 22 (SSH) from your IP only. No direct access to 8080/3001 from internet.",detail:"All spency traffic enters through gateway port 8090 only. This matches production security posture",url:"https://docs.aws.amazon.com/vpc/latest/userguide/security-groups.html",type:"doc"},
+{name:"Test from local machine: POST http://{ec2-ip}:8090/auth/register {email, password, firstName, lastName} → 201 {token}",detail:"Update spency frontend .env to point at EC2 temporarily: VITE_API_BASE_URL=http://{ec2-ip}:8090. All 6 modules work remotely",url:"https://docs.aws.amazon.com/ec2/",type:"doc"}
+]
+},
+25:{title:"AWS S3 + Load Balancer + CloudFront CDN",week:"Week 4 — Cloud, Architecture & AI",mock:false,
+dsa:[
+{name:"Regular Expression Matching",time:"30m",url:LC+"regular-expression-matching/"},
+{name:"Wildcard Matching",time:"25m",url:LC+"wildcard-matching/"},
+{name:"Burst Balloons",time:"30m",url:LC+"burst-balloons/"},
+{name:"Stone Game",time:"15m",url:LC+"stone-game/"},
+{name:"Palindrome Partitioning",time:"20m",url:LC+"palindrome-partitioning/"}
+],
+learning:[
+{name:"S3 – buckets, IAM policies, pre-signed URLs, static site hosting",resource:"freeCodeCamp AWS S3",url:"https://www.youtube.com/watch?v=mxT233EdY5c",type:"yt"},
+{name:"AWS Application Load Balancer docs",resource:"docs.aws.amazon.com",url:"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/",type:"doc"}
+],
+project:[
+{name:"In spency: set VITE_API_BASE_URL=https://{alb-dns}/api in .env.production. Run npm run build → dist/ created with hashed filenames",detail:"Verify dist/index.html exists. All JS/CSS assets have content hashes for long-term caching on CloudFront",url:"https://vitejs.dev/guide/env-and-mode.html",type:"doc"},
+{name:"Use infra/s3/bucket-policy-template.json: create S3 bucket 'spency-ui-prod' in us-east-1. Enable static website hosting. Block all public access (CloudFront uses OAI)",detail:"Update bucket-policy-template.json with your bucket ARN. Apply policy via AWS console or CLI",url:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html",type:"doc"},
+{name:"Use infra/iam/s3-deploy-policy.json + trust-policy.json: create IAM user 'spency-deployer' with s3:PutObject + s3:DeleteObject + s3:ListBucket on spency-ui-prod/*",detail:"Download access keys for spency-deployer. Run: aws configure --profile spency",url:"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html",type:"doc"},
+{name:"Deploy: aws s3 sync dist/ s3://spency-ui-prod --delete --cache-control 'max-age=31536000' --exclude 'index.html' --profile spency. Then sync index.html separately with no-cache",detail:"--delete removes old files. Long cache for hashed assets, no-cache for index.html (SPA entry point must always be fresh)",url:"https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/sync.html",type:"doc"},
+{name:"Create CloudFront distribution: S3 origin with OAI, default root = index.html. Custom error: 403 and 404 → /index.html response code 200 (required for React Router SPA)",detail:"Enable HTTPS redirect. Note distribution domain (xyz.cloudfront.net). Create invalidation on deploy: aws cloudfront create-invalidation --paths '/*'",url:"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/",type:"doc"},
+{name:"Create Application Load Balancer: internet-facing, HTTP:80 listener → target group = EC2 port 8090. Test: spency React at CloudFront URL → login → all 6 modules work via ALB → EC2 gateway",detail:"Full production flow: HTTPS CloudFront → S3 (React assets) + ALB (API calls) → EC2 gateway → Spring/Node",url:"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/",type:"doc"}
+]
+},
+26:{title:"System Design – URL Shortener + News Feed",week:"Week 4 — Cloud, Architecture & AI",mock:true,
+dsa:[
+{name:"Design HashMap",time:"15m",url:LC+"design-hashmap/"},
+{name:"Design Circular Queue",time:"15m",url:LC+"design-circular-queue/"},
+{name:"LFU Cache",time:"35m",url:LC+"lfu-cache/"},
+{name:"All O'one Data Structure",time:"25m",url:LC+"all-oone-data-structure/"},
+{name:"Design Skiplist",time:"30m",url:LC+"design-skiplist/"}
+],
+learning:[
+{name:"System Design – URL shortener deep dive (base62, Redis, Postgres, CDN)",resource:"ByteByteGo System Design",url:"https://www.youtube.com/watch?v=JQDHz72OA3c",type:"yt"},
+{name:"System Design Primer – GitHub",resource:"github.com",url:"https://github.com/donnemartin/system-design-primer",type:"doc"}
+],
+project:[
+{name:"Draw complete spency architecture diagram (draw.io or paper): React→CloudFront/S3, ALB→Gateway:8090→Spring:8080/Node:3001→Postgres/MongoDB, Redis, Kafka, EC2",detail:"Include all component ports, data flow arrows, and which data store each service owns",url:"https://app.diagrams.net/",type:"doc"},
+{name:"Bottleneck analysis: at 100k shopkeepers GET /api/shopkeepers is slow. Design Postgres read replica",detail:"Add spring.datasource.read.url= in application.properties. Route all @Transactional(readOnly=true) queries to replica",url:"https://github.com/donnemartin/system-design-primer",type:"doc"},
+{name:"Design horizontal scaling: multiple spency-backend instances behind ALB. Identify what breaks",detail:"JWT is stateless (OK). Redis is shared (OK). Kafka consumer group rebalances automatically (OK). Flyway migrations need single-instance lock (use Flyway team lock)",url:"https://github.com/donnemartin/system-design-primer",type:"doc"},
+{name:"Design Kafka partition strategy for spency-order-events: partition by userId so all orders for same user go to same partition (ordered delivery per user)",detail:"Discuss hot partition risk: one power user with 1000 orders/min monopolises 1 partition. Solution: use consistent hashing",url:"https://kafka.apache.org/documentation/",type:"doc"},
+{name:"Write Architecture Decision Record (ADR): docs/adr/001-gateway-choice.md — Why Express gateway over Spring Cloud Gateway",detail:"Pros: simpler, fast startup, team JS familiarity. Cons: less Java ecosystem. Add docs/adr/ folder to repo",url:"https://github.com/joelparkerhenderson/architecture-decision-record",type:"doc"}
+]
+},
+27:{title:"Caching Patterns + Rate Limiting + API Gateway",week:"Week 4 — Cloud, Architecture & AI",mock:false,
+dsa:[
+{name:"Kth Largest in Array",time:"15m",url:LC+"kth-largest-element-in-an-array/"},
+{name:"Find K Pairs Smallest Sums",time:"20m",url:LC+"find-k-pairs-with-smallest-sums/"},
+{name:"Max Sum Circular Subarray",time:"20m",url:LC+"maximum-sum-circular-subarray/"},
+{name:"Largest Number",time:"15m",url:LC+"largest-number/"},
+{name:"Maximum Performance of a Team",time:"30m",url:LC+"maximum-performance-of-a-team/"},
+{name:"IPO",time:"20m",url:LC+"ipo/"}
+],
+learning:[
+{name:"Caching patterns – write-through, write-behind, cache-aside, read-through",resource:"ByteByteGo Caching",url:"https://www.youtube.com/watch?v=dGAgxozNWFE",type:"yt"},
+{name:"Rate limiting algorithms – token bucket, leaky bucket, sliding window log",resource:"ByteByteGo Rate Limiting",url:"https://www.youtube.com/watch?v=FU4WlwfS3G0",type:"yt"}
+],
+project:[
+{name:"Add to pom.xml: com.giffing.bucket4j.spring.boot.starter:bucket4j-spring-boot-starter. Configure in application.yml: bucket4j filters with /api/.* url and capacity=100 per 60s",detail:"Bucket4j uses Redis as distributed counter. Multiple spency-backend instances share same rate limit bucket per user",url:"https://www.baeldung.com/spring-bucket4j",type:"doc"},
+{name:"Create RateLimitConfig.java: extract userId claim from JWT in request header, use as Redis bucket key",detail:"Different users have independent 100 req/min buckets. Anonymous (no JWT) requests share one global bucket",url:"https://www.baeldung.com/spring-bucket4j",type:"doc"},
+{name:"Add Cache-Control header to GET /api/shopkeepers and GET /api/cas: ResponseEntity.ok().cacheControl(CacheControl.maxAge(1, TimeUnit.HOURS)).body(result)",detail:"CloudFront caches shopkeeper/CA listings for 1 hour. Reduces origin load for spency's most-read endpoints",url:"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control",type:"doc"},
+{name:"Add Cache-Control: no-store, private to GET /api/users/{id} and all /auth/* responses",detail:"Personal data and auth tokens must not be cached by CDN or shared proxies. Add Vary: Authorization header too",url:"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control",type:"doc"},
+{name:"Install Apache Bench: brew install httpd. Run: ab -n 500 -c 20 -H 'Authorization: Bearer {token}' http://localhost:8090/api/shopkeepers",detail:"After 100 requests for that token: expect 429 Too Many Requests. Different token → fresh 100 req bucket",url:"https://httpd.apache.org/docs/2.4/programs/ab.html",type:"doc"}
+]
+},
+28:{title:"AI Basics – LLMs, Prompt Engineering, RAG Concepts",week:"Week 4 — Cloud, Architecture & AI",mock:true,
+dsa:[
+{name:"Valid Sudoku",time:"15m",url:LC+"valid-sudoku/"},
+{name:"Sudoku Solver",time:"30m",url:LC+"sudoku-solver/"},
+{name:"Count of Range Sum",time:"25m",url:LC+"count-of-range-sum/"},
+{name:"Russian Doll Envelopes",time:"25m",url:LC+"russian-doll-envelopes/"},
+{name:"Maximum Vacation Days",time:"25m",url:LC+"maximum-vacation-days/"}
+],
+learning:[
+{name:"LLMs explained – tokens, embeddings, temperature, context window, fine-tuning",resource:"Andrej Karpathy Intro to LLMs",url:"https://www.youtube.com/watch?v=zjkBMFhNj_g",type:"yt"},
+{name:"OpenAI API Documentation",resource:"platform.openai.com",url:"https://platform.openai.com/docs",type:"doc"}
+],
+project:[
+{name:"Add spring-ai-openai-spring-boot-starter to pom.xml. Set spring.ai.openai.api-key=${OPENAI_API_KEY} in application.properties (never hardcode)",detail:"Add OPENAI_API_KEY to spency.env on EC2 and to GitHub Actions secrets for CI builds",url:"https://platform.openai.com/docs/api-reference/chat",type:"doc"},
+{name:"Create AIRequest.java DTO: {query: String}. Create AIResponse.java DTO: {suggestion: String, matchedCAs: List<CASummary>, matchedShopkeepers: List<ShopkeeperSummary>}",detail:"CASummary: {id, name, specialization}. ShopkeeperSummary: {id, name, category}. Used by spency AI assistant panel",url:"https://platform.openai.com/docs/",type:"doc"},
+{name:"Create AIService.java: fetch top 10 CAs + top 10 Shopkeepers from DB. Build system prompt: 'You are a spency assistant. CAs available: {names+specializations}. Shopkeepers: {names+categories}. Return JSON with suggestion, matchedCAs, matchedShopkeepers.'",detail:"Use temperature=0.3 for consistent recommendations. max_tokens=500. Request response_format={type:'json_object'}",url:"https://platform.openai.com/docs/guides/prompt-engineering",type:"doc"},
+{name:"Create AIController.java: POST /api/ai/suggest @RequestBody AIRequest → calls AIService → returns AIResponse",detail:"Wrap OpenAI call in try-catch. On RateLimitException → return last Redis-cached response for that query. On timeout → return top-3 CAs by rating as fallback",url:"https://platform.openai.com/docs/api-reference/chat",type:"doc"},
+{name:"Cache successful AI responses in Redis: key='ai:suggest:{queryHash}' TTL=15 minutes",detail:"queryHash = SHA-256 of lowercased trimmed query. Same query from different users returns cached response (AI calls are expensive)",url:"https://redis.io/docs/",type:"doc"},
+{name:"Test: POST /api/ai/suggest {query:'I need a CA for GST filing in Mumbai'} → returns {suggestion:'...', matchedCAs:[...], matchedShopkeepers:[]}",detail:"Send same query twice → second response from Redis (check logs: no OpenAI call on second request)",url:"https://platform.openai.com/docs/api-reference/chat",type:"doc"}
+]
+},
+29:{title:"Integrate OpenAI API – AI Assistant Feature",week:"Week 4 — Cloud, Architecture & AI",mock:false,
+dsa:[
+{name:"Concatenated Words",time:"25m",url:LC+"concatenated-words/"},
+{name:"Longest Word in Dictionary",time:"15m",url:LC+"longest-word-in-dictionary/"},
+{name:"Design Search Autocomplete",time:"35m",url:LC+"design-search-autocomplete-system/"},
+{name:"Stream of Characters",time:"25m",url:LC+"stream-of-characters/"},
+{name:"Min Cost to Cut a Stick",time:"20m",url:LC+"minimum-cost-to-cut-a-stick/"}
+],
+learning:[
+{name:"RAG basics – embeddings, vector search, semantic similarity, pgvector",resource:"Sam Witteveen RAG Tutorial",url:"https://www.youtube.com/watch?v=T-D1OfcDW1M",type:"yt"},
+{name:"LangChain4j for Java",resource:"docs.langchain4j.dev",url:"https://docs.langchain4j.dev/get-started",type:"doc"}
+],
+project:[
+{name:"Update AIController: add GET /api/ai/stream?query= endpoint returning SseEmitter. On each OpenAI stream chunk push data to SseEmitter. Complete emitter on finish",detail:"Use @GetMapping + produces=MediaType.TEXT_EVENT_STREAM_VALUE. SseEmitter timeout = 60_000ms",url:"https://platform.openai.com/docs/api-reference/streaming",type:"doc"},
+{name:"Create src/shared/components/AIAssistant.jsx in spency: query input field, Submit button, scrollable response area",detail:"State: {query, response, loading, error}. Response area appends tokens as they stream in (typewriter effect)",url:"https://react.dev/",type:"doc"},
+{name:"Wire EventSource in AIAssistant.jsx: new EventSource(apiBase+'/ai/stream?query='+encodeURIComponent(query))",detail:"evtSource.onmessage: setResponse(prev => prev + event.data). evtSource.onerror: close + setError. evtSource.onopen: setLoading(false)",url:"https://developer.mozilla.org/en-US/docs/Web/API/EventSource",type:"doc"},
+{name:"Add AIAssistant to spency user dashboard: src/modules/user/pages/Dashboard.jsx — collapsible card at bottom with default query 'Recommend CAs based on my profile'",detail:"Pass user.specialization needs as initial query if available from UserContext",url:"https://react.dev/",type:"doc"},
+{name:"Add AIAssistant to CA search page: src/modules/ca/pages/CASearch.jsx — user types need, AI suggests best matching CAs from spency DB",detail:"Replace manual category dropdown with AI-powered text search for CA discovery",url:"https://react.dev/",type:"doc"},
+{name:"Test streaming: ask 'I need a CA for startup registration in Bangalore' — see tokens appear one-by-one in browser in real time",detail:"Open DevTools Network tab → filter EventStream type → confirm SSE connection with streaming chunks",url:"https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events",type:"doc"}
+]
+},
+30:{title:"Final Day – Mock Interviews + Full Project Review",week:"Week 4 — Cloud, Architecture & AI",mock:true,
+dsa:[
+{name:"Two Sum – explain aloud with Big-O analysis",time:"15m",url:LC+"two-sum/"},
+{name:"LRU Cache – explain design decisions out loud",time:"25m",url:LC+"lru-cache/"},
+{name:"Merge K Sorted Lists – walk through heap approach",time:"20m",url:LC+"merge-k-sorted-lists/"},
+{name:"Design Twitter – full system walkthrough",time:"30m",url:LC+"design-twitter/"},
+{name:"Find Median from Data Stream",time:"30m",url:LC+"find-median-from-data-stream/"}
+],
+learning:[
+{name:"Mock interview – Design Instagram / WhatsApp end to end",resource:"ByteByteGo Full System Design",url:"https://www.youtube.com/watch?v=xyLO8ZAk2KE",type:"yt"},
+{name:"Grokking System Design Interview",resource:"educative.io",url:"https://www.educative.io/courses/grokking-the-system-design-interview",type:"doc"}
+],
+project:[
+{name:"Run ./mvnw test in spency-backend: target 0 failures. Run npm test in spency-order-service and spency-gateway",detail:"Fix any flaky tests. Final count should be 20+ backend tests. All GitHub Actions workflows green",url:"https://maven.apache.org/guides/",type:"doc"},
+{name:"Full production smoke test: register → login → browse shopkeepers → browse CAs → use AI assistant → place order → verify Kafka event consumed → verify Redis cache hit",detail:"Open DevTools Network: no 4xx/5xx errors anywhere. Check docker-compose logs: consumer group processes Kafka event",url:"https://github.com/donnemartin/system-design-primer",type:"doc"},
+{name:"Record 10-min Loom walkthrough: demo all 6 spency modules (auth/user/ca/admin/shopkeeper/account). Login as different roles",detail:"Show: login as USER → dashboard → AI assistant. Login as ADMIN → manage all users. Login as SHOPKEEPER → manage inventory. Login as CA → manage profile",url:"https://www.loom.com/",type:"doc"},
+{name:"In Loom recording explain: why Express gateway (not Spring Cloud), why Kafka for orders (async decoupling), why Redis for CA/shopkeeper listings (read-heavy stable data), why MongoDB for orders (flexible schema)",detail:"Explain Saga pattern: what happens when account balance is insufficient → order auto-compensated to 'failed' status",url:"https://github.com/donnemartin/system-design-primer",type:"doc"},
+{name:"Update README.md: add architecture diagram PNG (from draw.io), env var reference table, local setup (docker-compose up), production deploy guide",detail:"README must let any developer clone repo and run locally in under 10 minutes with just docker-compose up",url:"https://www.makeareadme.com/",type:"doc"},
+{name:"Final push to GitHub → all 4 CI workflows green → all 3 Docker images tagged :latest on Docker Hub. Production URLs work: CloudFront → React, ALB → all API modules",detail:"Share Loom recording URL in README and on LinkedIn. Tag: #Java #SpringBoot #React #SystemDesign #FullStack",url:"https://docs.github.com/en/actions",type:"doc"}
+]
+}
+};
+
+function getTaskKey(d,i){return"d"+d+"_t"+i;}
+function getAllTasks(day){return[...day.dsa,...day.learning,...day.project];}
+function getCompletionRatio(d){
+  const t=getAllTasks(plan[d]);
+  const done=t.filter((_,i)=>localStorage.getItem(getTaskKey(d,i))==="true").length;
+  return done/t.length;
+}
+function updateOverallProgress(){
+  let total=0,done=0;
+  for(let d=1;d<=30;d++){
+    const t=getAllTasks(plan[d]);
+    total+=t.length;
+    t.forEach((_,i)=>{if(localStorage.getItem(getTaskKey(d,i))==="true")done++;});
+  }
+  const pct=Math.round(done/total*100);
+  document.getElementById("totalProgress").style.width=pct+"%";
+  document.getElementById("progressText").textContent="Overall: "+pct+"% complete ("+done+"/"+total+" tasks)";
+}
+function refreshNavColors(){
+  for(let d=1;d<=30;d++){
+    const btn=document.getElementById("navbtn"+d);
+    if(!btn)continue;
+    if(getCompletionRatio(d)===1)btn.classList.add("done");
+    else btn.classList.remove("done");
+  }
+}
+function buildNav(){
+  const nav=document.getElementById("dayNav");
+  for(let d=1;d<=30;d++){
+    const b=document.createElement("button");
+    b.className="day-btn";b.id="navbtn"+d;b.textContent="Day "+d;
+    b.onclick=(()=>{const dd=d;return()=>loadDay(dd);})();
+    nav.appendChild(b);
+  }
+}
+
+const YT_ICON='<svg width="13" height="13" viewBox="0 0 24 24" fill="#ff4444"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>';
+const DOC_ICON='<svg width="13" height="13" viewBox="0 0 24 24" fill="#60a5fa"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zm-7-7H8v-2h3v2zm5 3H8v-2h8v2zm0-6H8V8h8v2z"/></svg>';
+const LC_ICON='<svg width="13" height="13" viewBox="0 0 24 24" fill="#f89f1b"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0z"/></svg>';
+
+function taskRow(key,checked,titleHtml,subHtml,linksHtml){
+  return'<div class="task'+(checked?' completed':'')+'" id="tr_'+key+'">'+
+    '<input type="checkbox"'+(checked?' checked':'')+' onchange="toggleTask(\''+key+'\')">'+'<div class="task-body">'+
+    '<div class="task-title">'+titleHtml+'</div>'+
+    (subHtml?'<div class="task-sub">'+subHtml+'</div>':'')+
+    '<div class="task-links">'+linksHtml+'</div>'+'</div></div>';
+}
+function lbtn(cls,icon,label,url){
+  return'<a class="link-btn '+cls+'" href="'+url+'" target="_blank" rel="noopener noreferrer">'+icon+' '+label+'</a>';
+}
+
+function loadDay(d){
+  document.querySelectorAll(".day-btn").forEach(b=>b.classList.remove("active"));
+  const navbtn=document.getElementById("navbtn"+d);
+  if(navbtn)navbtn.classList.add("active");
+  const day=plan[d];
+  const dsaMin=day.dsa.reduce((s,t)=>s+parseInt(t.time),0);
+  let html='<div class="day-header">'+
+    '<div class="day-number">Day '+d+'</div>'+
+    '<div class="day-meta"><h2>'+day.title+'</h2><p>'+day.week+'</p>'+
+    '<div class="time-chips">'+
+    '<span class="chip chip-dsa">🧠 DSA '+dsaMin+'m</span>'+
+    '<span class="chip chip-learn">📘 Learning 2h</span>'+
+    '<span class="chip chip-proj">💻 Project 1.5h</span>'+
+    (day.mock?'<span class="chip chip-mock">🎤 Mock 30m</span>':'')+
+    '</div></div></div>';
+
+  // DSA
+  html+='<div class="section sec-dsa"><div class="section-title">🧠 DSA — 2 Hours</div>';
+  day.dsa.forEach((t,i)=>{
+    const k=getTaskKey(d,i);
+    const chk=localStorage.getItem(k)==="true";
+    html+=taskRow(k,chk,
+      t.name+' <span style="color:#64748b;font-size:.78rem">('+t.time+')</span>',
+      '',
+      lbtn('lc-btn',LC_ICON,'LeetCode',t.url));
+  });
+  html+='</div>';
+
+  // Learning
+  const lo=day.dsa.length;
+  html+='<div class="section sec-learn"><div class="section-title">📘 Learning — 2 Hours</div>';
+  day.learning.forEach((t,i)=>{
+    const k=getTaskKey(d,lo+i);
+    const chk=localStorage.getItem(k)==="true";
+    const icon=t.type==="yt"?YT_ICON:DOC_ICON;
+    const cls=t.type==="yt"?"yt-btn":"doc-btn";
+    const label=t.type==="yt"?"YouTube":"Docs";
+    html+=taskRow(k,chk,t.name,t.resource,lbtn(cls,icon,label,t.url));
+  });
+  html+='</div>';
+
+  // Project
+  const po=day.dsa.length+day.learning.length;
+  html+='<div class="section sec-proj"><div class="section-title">💻 Project Work — 1.5 Hours</div>';
+  day.project.forEach((t,i)=>{
+    const k=getTaskKey(d,po+i);
+    const chk=localStorage.getItem(k)==="true";
+    const icon=t.type==="yt"?YT_ICON:DOC_ICON;
+    const cls=t.type==="yt"?"yt-btn":"doc-btn";
+    const label=t.type==="yt"?"YouTube":"Docs";
+    html+=taskRow(k,chk,t.name,t.detail,lbtn(cls,icon,label,t.url));
+  });
+  html+='</div>';
+
+  // Mock
+  if(day.mock){
+    const mk="mock"+d;
+    const mc=localStorage.getItem(mk)==="true";
+    html+='<div class="section sec-mock"><div class="section-title">🎤 Mock Interview — 30 Minutes</div>'+
+      '<div class="task'+(mc?' completed':'')+'" id="tr_'+mk+'">'+
+      '<input type="checkbox"'+(mc?' checked':'')+' onchange="toggleMock(\''+mk+'\')">'+
+      '<div class="task-body"><div class="task-title">Verbal walkthrough drill</div>'+
+      '<div class="task-sub">• 15m: Explain 1 DSA solution aloud (Big-O analysis)<br>'+
+      '• 10m: Walk through project architecture + trade-offs<br>'+
+      '• 5m: System design or scaling question</div></div></div></div>';
+  }
+
+  document.getElementById("dayCard").innerHTML=html;
+}
+
+function toggleTask(key){
+  const cb=document.querySelector("#tr_"+key+" input");
+  const row=document.getElementById("tr_"+key);
+  localStorage.setItem(key,cb.checked);
+  if(cb.checked)row.classList.add("completed"); else row.classList.remove("completed");
+  refreshNavColors(); updateOverallProgress();
+}
+function toggleMock(key){
+  const cb=document.querySelector("#tr_"+key+" input");
+  const row=document.getElementById("tr_"+key);
+  localStorage.setItem(key,cb.checked);
+  if(cb.checked)row.classList.add("completed"); else row.classList.remove("completed");
+  updateOverallProgress();
+}
+function toggleRoadmap(){document.getElementById("roadmap").classList.toggle("open");}
+
+buildNav(); loadDay(1); updateOverallProgress();
+</script>
+</body>
+</html>
