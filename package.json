@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/yourusername/Full-Stack-Interview-Learning-Plan",
+  "homepage": "https://ishubhamkr.github.io/Full-Stack-Interview-Learning-Plan",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
