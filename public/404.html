@@ -4,18 +4,18 @@
     <meta charset="utf-8" />
     <title>Full-Stack Mastery — 21 Day Interview Prep</title>
     <script>
-      // GitHub Pages SPA redirect trigger
+      // GitHub Pages SPA redirect — segmentsToKeep=1 for repo pages
+      // Encodes only the path AFTER the repo-name segment to avoid base-path duplication.
       (function() {
+        var segmentsToKeep = 1;
         var l = window.location;
-        if (l.pathname !== '/' && !l.pathname.endsWith('.html')) {
-          l.replace(
-            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            l.pathname.split('/').slice(0, -1).join('/') + '/?/' +
-            l.pathname.slice(1).replace(/&/g, '~and~') +
-            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-            l.hash
-          );
-        }
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + segmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(segmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
       })();
     </script>
   </head>
